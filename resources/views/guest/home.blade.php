@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Laravel - WordPress</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
@@ -58,30 +58,27 @@
                 text-transform: uppercase;
             }
 
-            .m-b-md {
-                margin-bottom: 30px;
+            .container {
+                width: 60%;
+                margin: 0 auto;
             }
         </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ route('admin.home') }}">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
+            <div class="top-right links">
+                <a href="">Elenco Post</a>
+                @guest
+                <a href="{{ route('login') }}">{{ __('Login') }}</a>
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                @endif
+                @endguest
+            </div>
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="container">
+                    <h1>Il costruttore di siti più famoso al mondo.</h1>
+                    <p>Il 42% dei siti web usa la tecnologia WordPress. Blogger, piccole attività e grandi aziende nella lista Fortune 500 usano WordPress più di tutte le alternative messe insieme. Unisciti ai milioni di utenti che hanno scelto WordPress.com.</p>
                 </div>
             </div>
         </div>
