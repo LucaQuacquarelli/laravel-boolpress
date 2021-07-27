@@ -27,7 +27,7 @@
                     <td>{{$post->slug}}</td>
                     <td>
                         @if ($post->category)
-                            {{ $post->category->name }}   
+                        <a href="{{ route('admin.categories.show', $post->category->id) }}" class="btn badge-info">{{ $post->category->name }}</a> 
                         @else
                             Categoria sconosciuta
                         @endif

@@ -10,8 +10,7 @@
     @endif
     <h1>{{$post->title}}  
         @if ($post->category)        
-            <a href="" class="badge badge-info">{{ $post->category->name }}</a>
-            {{-- {{ route('admin.categories.show', $post->category->id) }} --}}
+            <a href="{{ route('admin.categories.show', $post->category->id) }}" class="badge badge-info">{{ $post->category->name }}</a>
         @else
             <span class="badge badge-secondary">Categoria sconosciuta</span>     
         @endif
