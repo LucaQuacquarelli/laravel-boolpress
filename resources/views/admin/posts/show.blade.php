@@ -8,7 +8,14 @@
     @if (session('edited'))
         <div class="alert alert-success"><strong>{{ session('edited') }}</strong> modificato correttamente!</div>
     @endif
-    <h1>{{$post->title}}</h1>
+    <h1>{{$post->title}}  
+        @if ($post->category)        
+            <a href="" class="badge badge-info">{{ $post->category->name }}</a>
+            {{-- {{ route('admin.categories.show', $post->category->id) }} --}}
+        @else
+            <span class="badge badge-secondary">Categoria sconosciuta</span>     
+        @endif
+    </h1>
     <small>{{$post->slug}}</small>
     <p class="my-2">{{$post->content}}</p>
     <div class="d-flex my-4">
