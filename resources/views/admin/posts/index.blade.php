@@ -16,6 +16,7 @@
                 <th>Titolo</th>
                 <th>Slug</th>
                 <th>Categoria</th>
+                <th>Tags</th>
                 <th colspan="3">Azioni</th>
             </tr>
         </thead>
@@ -30,6 +31,15 @@
                         <a href="{{ route('admin.categories.show', $post->category->id) }}" class="btn badge-info">{{ $post->category->name }}</a> 
                         @else
                             Categoria sconosciuta
+                        @endif
+                    </td>
+                    <td>
+                        @if (count($post->tags) > 0)
+                            @foreach ($post->tags as $tag)
+                            <span class="badge badge-pill badge-dark">{{ $tag->name }}</span>
+                            @endforeach
+                        @else  
+                            Nessun tag collegato  
                         @endif
                     </td>
                     <td>

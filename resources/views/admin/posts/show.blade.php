@@ -8,13 +8,24 @@
     @if (session('edited'))
         <div class="alert alert-success"><strong>{{ session('edited') }}</strong> modificato correttamente!</div>
     @endif
-    <h1>{{$post->title}}  
-        @if ($post->category)        
-            <a href="{{ route('admin.categories.show', $post->category->id) }}" class="badge badge-info">{{ $post->category->name }}</a>
+    <div class="d-flex align-items-center">
+        <h1>{{$post->title}}  
+            @if ($post->category)        
+                <a href="{{ route('admin.categories.show', $post->category->id) }}" class="badge badge-info">{{ $post->category->name }}</a>
+            @else
+                <span class="badge badge-secondary">Categoria sconosciuta</span>     
+            @endif
+        </h1>
+        @if (count($post->tags) > 0)
+        <div class="mx-3 h5">
+            @foreach ($post->tags as $tag)
+            <span class="badge badge-pill badge-dark">{{ $tag->name }}</span>    
+            @endforeach
+        </div>
         @else
-            <span class="badge badge-secondary">Categoria sconosciuta</span>     
+        <h6 class="mx-3">Nessun tag collegato</h6>    
         @endif
-    </h1>
+    </div>
     <small>{{$post->slug}}</small>
     <p class="my-2">{{$post->content}}</p>
     <div class="d-flex my-4">
