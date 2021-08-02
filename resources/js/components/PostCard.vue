@@ -4,7 +4,7 @@
             <div class="card-body">
                 <h4 class="card-title">{{ post.title }}</h4>
                 <p>{{ post.excerpt }}</p>
-                <a href="#" class="card-link">Leggi</a>
+                <router-link :to="{name: 'single-post', params: {slug: post.slug} }">Leggi</router-link>
             </div>
         </div>      
     </div>

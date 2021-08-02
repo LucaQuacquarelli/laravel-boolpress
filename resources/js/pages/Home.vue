@@ -7,7 +7,7 @@
 
 <script>
 export default {
-    name: 'BuildingSite'
+    name: 'Home'
 
 }
 </script>
