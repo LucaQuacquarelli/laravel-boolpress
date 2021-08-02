@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section v-if="posts.length > 0">
         <h1>Elenco Post</h1>
         <div class="post-container d-flex">
             <div class="btn btn-primary align-self-center prev" v-show="current_page > 1" @click="getPosts(current_page - 1)">
@@ -14,14 +14,17 @@
             </div>
         </div>
     </section>
+    <Loader v-else/>
 </template>
 
 <script>
+import Loader from '../components/Loader.vue';
 import PostCard from '../components/PostCard.vue'
 export default {
     name : 'App',
     components: {
-        PostCard
+        PostCard,
+        Loader
     },
     data: function() {
         return {

@@ -29,6 +29,13 @@ export default {
         div {
             display: flex;
             align-items: center;
+
+            a {
+
+                &.active {
+                    border-bottom: 3px solid rgb(41, 255, 148);
+                }
+            }
         }
 
         a {

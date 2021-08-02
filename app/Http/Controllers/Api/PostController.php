@@ -8,9 +8,13 @@ use App\Post;
 
 class PostController extends Controller
 {
-    public function index()
-    {
+    public function index() {
         $posts = Post::paginate(6);
         return response()->json($posts);
     }
+
+    public function show($slug) {
+        $post = Post::where('slug', $slug)->first();
+        return response()->json($post);
+    } 
 }

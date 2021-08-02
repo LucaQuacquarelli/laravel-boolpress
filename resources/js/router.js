@@ -11,6 +11,7 @@ import SinglePost from './pages/SinglePost.vue';
 
 const router = new VueRouter({
     mode: 'history',
+    linkExactActiveClass: 'active',
     routes: [
         {
             path: '/',
