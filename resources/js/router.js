@@ -9,6 +9,8 @@ import Support from './pages/Support.vue';
 import About from './pages/About.vue';
 import SinglePost from './pages/SinglePost.vue';
 import NotFound from './pages/NotFound.vue';
+import Category from './pages/Category.vue';
+import Categories from './pages/Categories.vue';
 
 const router = new VueRouter({
     mode: 'history',
@@ -35,9 +37,19 @@ const router = new VueRouter({
             component: About
         },
         {
+            path: '/blog/categories',
+            name: 'categories',
+            component: Categories
+        },
+        {
             path: '/blog/:slug',
             name: 'single-post',
             component: SinglePost
+        },
+        {
+            path: '/blog/categories/category/:slug',
+            name: 'category',
+            component: Category
         },
         {
             path: '*',

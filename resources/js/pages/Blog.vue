@@ -1,6 +1,9 @@
 <template>
     <section v-if="posts.length > 0">
-        <h1>Elenco Post</h1>
+        <div class="d-flex justify-content-between">
+            <h1>Elenco Post</h1>
+            <router-link :to="{name: 'categories'}" class="btn btn-primary align-self-center">Categorie</router-link>
+        </div>
         <div class="post-container d-flex">
             <div class="btn btn-primary align-self-center prev" v-show="current_page > 1" @click="getPosts(current_page - 1)">
                 <span>PREV</span>

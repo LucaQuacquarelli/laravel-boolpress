@@ -1,7 +1,7 @@
 <template>
     <section v-if="!loading && post">
         <h1>{{post.title}}
-            <a href="" class="badge badge-info" v-if="post.category">{{post.category.name}}</a>
+            <router-link v-if="post.category" class="badge badge-primary" :to="{ name: 'category', params: { slug: post.category.slug } }">{{ post.category.name }}</router-link>
             <span v-else class="badge badge-secondary">Categoria sconosciuta</span>
         </h1>
         <p>{{post.content}}</p>

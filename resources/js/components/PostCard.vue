@@ -3,7 +3,7 @@
         <div class="post-card w-100">
             <div class="card-body">
                 <h4 class="card-title">{{ post.title }}
-                    <a href="" class="badge badge-info" v-if="post.category">{{post.category.name}}</a>
+                    <span class="badge badge-info" v-if="post.category">{{post.category.name}}</span>
                 </h4>
                 <p>{{ post.excerpt }}</p>
                 <router-link :to="{name: 'single-post', params: {slug: post.slug} }">Leggi</router-link>
