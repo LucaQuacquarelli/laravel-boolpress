@@ -2266,6 +2266,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Loader_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Loader.vue */ "./resources/js/components/Loader.vue");
+/* harmony import */ var _NotFound_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NotFound.vue */ "./resources/js/pages/NotFound.vue");
+//
 //
 //
 //
@@ -2283,14 +2285,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Loader: _components_Loader_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    Loader: _components_Loader_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    NotFound: _NotFound_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   name: 'SinglePost',
   data: function data() {
     return {
-      post: null
+      post: null,
+      loading: true
     };
   },
   methods: {
@@ -2298,7 +2303,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get("http://127.0.0.1:8000/api/posts/".concat(slug)).then(function (res) {
-        _this.post = res.data;
+        if (Object.entries(res.data) == 0) {
+          _this.post = null;
+        } else {
+          _this.post = res.data;
+        }
+
+        _this.loading = false;
       })["catch"](function (err) {
         console.log(err);
       });
@@ -4235,7 +4246,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.post
+  return !_vm.loading && _vm.post
     ? _c(
         "section",
         [
@@ -4282,6 +4293,8 @@ var render = function() {
         ],
         1
       )
+    : !_vm.loading && !_vm.post
+    ? _c("NotFound")
     : _c("Loader")
 }
 var staticRenderFns = []

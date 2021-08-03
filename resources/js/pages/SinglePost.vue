@@ -1,5 +1,5 @@
 <template>
-    <section v-if="post">
+    <section v-if="!loading && post">
         <h1>{{post.title}}
             <a href="" class="badge badge-info" v-if="post.category">{{post.category.name}}</a>
             <span v-else class="badge badge-secondary">Categoria sconosciuta</span>
@@ -11,20 +11,24 @@
         <h6 class="my-3" v-else>Nessun tag collegato</h6>    
         <router-link :to="{name: 'blog'}" class="btn btn-primary">Torna all'Elenco</router-link>
     </section>
+    <NotFound v-else-if="!loading && !post"/>
     <Loader v-else/>
 </template>
 
 <script>
 import Loader from '../components/Loader.vue';
+import NotFound from './NotFound.vue';
 
 export default {
   components: { 
-      Loader 
+        Loader,
+        NotFound 
     },
     name: 'SinglePost',
     data: function() {
         return {
-            post: null
+            post: null,
+            loading: true
         }
     },
     methods: {
@@ -33,7 +37,13 @@ export default {
                 .get(`http://127.0.0.1:8000/api/posts/${slug}`)
                 .then(
                     res => {
-                        this.post = res.data;
+                        
+                        if (Object.entries(res.data) == 0) {
+                            this.post = null;
+                        } else {
+                            this.post = res.data;
+                        }
+                        this.loading = false;
                     }
                 )
                 .catch(
